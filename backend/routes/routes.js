@@ -22,7 +22,7 @@ router.post('/post', async (req, res) => {
 //Get all Method
 router.get('/getAll', async (req, res) => {
     try{
-        const data = await Model.find();
+        const data = await Model.find({name: "John Doe"});
         res.json(data)
     }
     catch(error){
@@ -70,5 +70,15 @@ router.delete('/delete/:id', async (req, res) => {
     }
 })
 
+//Find by Name Method
+router.post('/findByName', async (req, res) => {
+    try {
+        const name = req.body.name;
+        const data = await Model.find({ name: name });
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports = router;

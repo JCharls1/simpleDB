@@ -1,11 +1,14 @@
 import React from 'react';
 import DatabaseList from './DatabaseList';
+import MainPage from './MainPage';
+import ListMessages from './ListMessages';
 
 const App = () => {
   return (
     <div>
-      <h1>My MongoDB Databases</h1>
-      <DatabaseList />
+      <MainPage />
+      {/* <DatabaseList /> */}
+      <ListMessages />
     </div>
   );
 };

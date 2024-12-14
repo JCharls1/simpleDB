@@ -33,7 +33,7 @@ const DatabaseList = () => {
 
   return (
     <div>
-      <h1>Databases</h1>
+      <h1 className="text-3xl font-bold underline">Databases</h1>
       <ul>
         {databases.map((db, index) => (
           <li key={index}>{db}</li>

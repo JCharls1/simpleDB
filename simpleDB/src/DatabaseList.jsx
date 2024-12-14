@@ -10,14 +10,15 @@ const DatabaseList = () => {
 
   useEffect(() => {
     // Fetch databases from the backend
-    axios.get('http://localhost:3000/items') // Change the URL if needed
+    axios.get('http://localhost:3000/api/getAll') // Change the URL if needed
       .then(response => {
-        setMess(response.data.message);
-        setDatabases(response.data.databases);
+        setMess(response.data[0].name);
+        console.log(typeof(response.data))
+        console.log(response.data)
         setLoading(false);
       })
       .catch(error => {
-        setError('Error fetching databases');
+        setError(`Error ${error}`);
         setLoading(false);
       });
   }, []);
@@ -38,7 +39,7 @@ const DatabaseList = () => {
           <li key={index}>{db}</li>
         ))}
       </ul>
-        <h1>asdasd</h1>
+      <h1>asdasd</h1>
       <h1>{mess}</h1>
     </div>
   );

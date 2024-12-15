@@ -7,8 +7,6 @@ const App = () => {
   return (
     <div>
       <MainPage />
-      {/* <DatabaseList /> */}
-      <ListMessages />
     </div>
   );
 };

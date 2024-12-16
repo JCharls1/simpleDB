@@ -1,13 +1,19 @@
-// if you don't know what to do create an .env file
-// or add authentication and profile creation
+// // if you don't know what to do create an .env file
+// // or add authentication and profile creation
+// // add the message input feature
+// add update API endpoint
 
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import config from './globals/config'
 
-const MainPage = () => {
+const MainPage = () => { 
+    const url = config.apiBaseUrl;
+
     const [searchResults, setSearchResults] = useState([]); // Store search results
     const [name, setName] = useState(''); // Name input state
     const [age, setAge] = useState(''); // Age input state
+    const [message, setMessage] = useState(''); // Message input state
     const [action, setAction] = useState(null); // Tracks whether to search or add
     const [error, setError] = useState(null); // Store any error messages
 
@@ -18,11 +24,11 @@ const MainPage = () => {
         const performAction = async () => {
             try {
                 if (action === 'search') {
-                    const response = await axios.post('http://localhost:3000/api/findByName', { name });
+                    const response = await axios.post(`${url}api/findByName`, { name });
                     setSearchResults(response.data);
                     console.log('Search Results:', response.data);
                 } else if (action === 'add') {
-                    const response = await axios.post('http://localhost:3000/api/post', { name, age });
+                    const response = await axios.post(`${url}api/post`, { name, age, message });
                     console.log('Data saved:', response.data);
                 }
             } catch (error) {
@@ -38,8 +44,8 @@ const MainPage = () => {
 
     // Validate input for adding data
     const handleAdd = () => {
-        if (!name.trim()) {
-            alert('Please fill out both name and age fields.');
+        if (!name.trim() || !message.trim()) {
+            alert('Please fill out all fields (Name, Age, and Message).');
             return;
         }
         setAction('add'); // Trigger `add` action
@@ -58,7 +64,7 @@ const MainPage = () => {
         <div className="flex justify-center items-center h-screen bg-creme">
             <div>
                 <div className="text-center mb-6">
-                    <h1>PAGE NAME</h1>
+                    <h1>Anon Notes</h1>
                 </div>
 
                 <form className="w-full max-w-sm">
@@ -77,22 +83,35 @@ const MainPage = () => {
                         <input
                             className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                             type="number"
-                            placeholder="Age"
+                            placeholder="Age(Optional)"
                             aria-label="Age"
                             value={age}
                             onChange={(e) => setAge(e.target.value)}
                         />
+                    </div>
 
-                        {/* Search Button */}
+                    {/* Message Input */}
+                    <div className="mt-4">
+                        <input
+                            className="appearance-none bg-transparent border-b border-teal-500 w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none"
+                            type="text"
+                            placeholder="Message"
+                            aria-label="Message"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        />
+                    </div>
+
+                    {/* Buttons */}
+                    <div className="mt-4 flex">
                         <button
-                            className="flex-shrink-0 bg-lgreen hover:bg-dgreen border-lgreen hover:border-dgreen text-sm border-4 text-white py-1 px-2 rounded"
+                            className="flex-shrink-0 bg-lgreen hover:bg-dgreen border-lgreen hover:border-dgreen text-sm border-4 text-white py-1 px-2 rounded mr-2"
                             type="button"
                             onClick={handleSearch}
                         >
                             Search
                         </button>
 
-                        {/* Add Button */}
                         <button
                             className="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded"
                             type="button"
@@ -104,12 +123,12 @@ const MainPage = () => {
                 </form>
 
                 {/* Display Search Results */}
-                <div>
+                <div className="mt-6">
                     <h2>Results:</h2>
                     {error && <p className="text-red-500">{error}</p>} {/* Error display */}
                     <ul>
                         {searchResults.map((item, index) => (
-                            <li key={index}>{item.name}</li>
+                            <li key={index}>{item.message}</li>
                         ))}
                     </ul>
                 </div>

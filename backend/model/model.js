@@ -7,6 +7,10 @@ const dataSchema = new mongoose.Schema({
     },
     age: {
         type: Number
+    },
+    message: {
+        required: true,
+        type: String
     }
 })
 

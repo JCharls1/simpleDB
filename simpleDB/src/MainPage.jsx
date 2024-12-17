@@ -6,6 +6,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import config from './globals/config'
+import Message from './Message';
 
 const MainPage = () => { 
     const url = config.apiBaseUrl;
@@ -128,7 +129,8 @@ const MainPage = () => {
                     {error && <p className="text-red-500">{error}</p>} {/* Error display */}
                     <ul>
                         {searchResults.map((item, index) => (
-                            <li key={index}>{item.message}</li>
+                            // <li key={index}>{item.message}</li>
+                            <li key={index}><Message message={item.message} /></li>
                         ))}
                     </ul>
                 </div>

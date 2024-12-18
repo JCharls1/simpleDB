@@ -1,6 +1,4 @@
-// // if you don't know what to do create an .env file
 // // or add authentication and profile creation
-// // add the message input feature
 // add update API endpoint
 
 import axios from 'axios';

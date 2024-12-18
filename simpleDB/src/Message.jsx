@@ -7,7 +7,7 @@ const Message = (props) => {
     };
 
     return (
-        <div className="flex justify-between items-center border-b border-teal-500 py-2 px-4 bg-white shadow-md rounded-lg">
+        <div className="m-1 flex justify-between items-center border-b border-teal-500 py-2 px-4 bg-white shadow-md rounded-lg">
             <p className="text-gray-700 flex-1">{props.message}</p>
             <button
                 className="bg-teal-500 hover:bg-teal-700 text-white text-sm py-1 px-3 rounded ml-4"

@@ -4,7 +4,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import config from './globals/config'
-import Message from './Message';
+import Message from './Components/Message';
 
 const MainPage = () => { 
     const url = config.apiBaseUrl;

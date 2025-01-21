@@ -1,7 +1,7 @@
 import React from 'react';
-import DatabaseList from './DatabaseList';
+import DatabaseList from './Components/DatabaseList';
 import MainPage from './MainPage';
-import ListMessages from './ListMessages';
+import ListMessages from './Components/ListMessages';
 
 const App = () => {
   return (
